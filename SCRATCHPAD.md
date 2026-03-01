@@ -21,3 +21,11 @@ console.log('new pos', canWidth - width)
 }
 
 good enough to code now
+
+### clicks
+
+if i want clicks to gen, ill need a scene/state manager since everything would need to be repainted as before w/ the addition. would also mean extraction of edge detection. might need a canvas specific set of utils to keep the code clean.
+
+click, grab x/y, run edge detection, update as needed, redraw. could also do the opposite detecting previous paints if mouse click hits to remove. state manager will be critical if i go down these paths.
+
+better to move on from this experiment and deeper into canvas abilities (especially animation). clicks can always be a later effort or separate experiement. lets do that.
