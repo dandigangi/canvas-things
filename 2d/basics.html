@@ -1,0 +1,91 @@
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+         body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+         .container {
+            width: 800px;
+            height: 600px;
+            border: 1px solid #a5a5a5;
+            position: relative;
+            z-index: 1;
+         }
+         .watermark {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0.5;
+            z-index: 0;
+            font-size: 120px;
+            line-height: 120px;
+            font-weight: bold;
+            color: #b9b9b9;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            transform: translate(-1px, 12px);
+            letter-spacing: -6px;
+         }
+         canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <canvas id="canvas">
+            If you're seeing this, your browser doesn't support the canvas tag.
+            That's wild. Are you on a Dell from 2003 using AOL?
+         </canvas>
+      </div>
+      <div class="watermark">CANVAS THINGS</div>
+   </body>
+</html>
+<script>
+   const CONSTANTS = {
+      canvasWidth: 800,
+      canvasHeight: 600,
+   }
+
+   // Supporting functions as needed
+   function rand(max) {
+      if (!max) throw new Error("rand() - no max val")
+      return Math.floor(Math.random() * max)
+   }
+
+   function randRgb() {
+      return rand(255)
+   }
+</script>
+<script>
+   function draw() {
+      const canvas = document.getElementById("canvas")
+      const context = canvas.getContext("2d")
+
+      canvas.width = CONSTANTS.canvasWidth
+      canvas.height = CONSTANTS.canvasHeight
+
+      context.fillStyle = "#d57070"
+      context.fillRect(
+         rand(CONSTANTS.canvasWidth),
+         rand(CONSTANTS.canvasHeight),
+         150,
+         150,
+      ) // x, y, width, height
+   }
+
+   draw()
+</script>
