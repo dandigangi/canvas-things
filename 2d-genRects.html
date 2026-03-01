@@ -12,7 +12,7 @@
          </canvas>
          <div>
             <button id="redraw">Draw Again</button>
-            <select class="experiment-chooser" disabled>
+            <select id="experiment-chooser" disabled>
                <option>Basic</option>
                <option>EX2</option>
                <option>EX3</option>
@@ -26,6 +26,7 @@
    </body>
 </html>
 <script src="./global.js"></script>
+<script src="./constants.js"></script>
 <script>
    function genRects({ name = null, total, maxSize }) {
       const TOTAL = rand(total)

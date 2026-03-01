@@ -1,8 +1,3 @@
-const CONSTANTS = {
-   canvasWidth: 800,
-   canvasHeight: 600,
-}
-
 // Set watermark to experiment title
 ;(function () {
    const el = document.getElementById('title')
