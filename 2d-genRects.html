@@ -1,4 +1,3 @@
-<!-- <!doctype html> -->
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,6 +38,19 @@
             padding: 0;
             transform: translate(-1px, 12px);
             letter-spacing: -6px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+         }
+
+         #title {
+            margin-left: 10px;
+            font-size: 30px;
+            line-height: 30px;
+            color: #5a5a5a;
+            position: relative;
+            letter-spacing: -2px;
+            top: -14px;
          }
 
          #redraw {
@@ -74,7 +86,10 @@
          </canvas>
          <button id="redraw">Draw</button>
       </div>
-      <div class="watermark">CANVAS THINGS</div>
+      <div class="watermark">
+         Canvas Things
+         <div id="title">Loading</div>
+      </div>
    </body>
 </html>
 <script>
@@ -90,7 +105,7 @@
    }
 
    function rand(max = null) {
-      if (!max) throw new Error("rand() - no max val")
+      if (!max) throw new Error("[fx-rand] No max value provided")
       return Math.floor(Math.random() * max + 3)
    }
 
@@ -99,7 +114,7 @@
    }
 
    // Canvas Things
-   function genRects({ total, maxSize }) {
+   function genRects({ name = null, total, maxSize }) {
       const TOTAL = rand(total)
       const rectangles = []
 
@@ -114,7 +129,7 @@
          })
       }
 
-      console.log(rectangles)
+      console.info("[fx-genRects]", name ? name : "", rectangles)
       return rectangles
    }
 
@@ -125,7 +140,8 @@
       canvas.width = CONSTANTS.canvasWidth
       canvas.height = CONSTANTS.canvasHeight
 
-      const miniRects = genRects({ total: 6, maxSize: 69 })
+      // Mini bois
+      const miniRects = genRects({ name: "miniRects", total: 6, maxSize: 123 })
 
       for (const rect of miniRects) {
          context.fillStyle = rect.fillStyle
