@@ -1,3 +1,9 @@
+// log wrapper for debug
+function log(...args) {
+   if (!CONSTANTS.debug) return
+   console.log(...args)
+}
+
 // set watermark to experiment title
 ;(function () {
    const el = document.getElementById('title')

@@ -34,6 +34,7 @@
    canvas.height = CONSTANTS.canvasHeight
 
    function genRects({ name = null, total, maxSize }) {
+      console.log('[fx-genRects]')
       const rectangles = []
 
       // build props, draw later
@@ -45,7 +46,7 @@
 
          // edge detection
          if (x + width > CONSTANTS.canvasWidth) {
-            console.log(
+            log(
                `[rect ${i}] x edge collision by`,
                x + width - CONSTANTS.canvasWidth,
             )
@@ -53,7 +54,7 @@
          }
 
          if (y + height > CONSTANTS.canvasHeight) {
-            console.log(
+            log(
                `[rect ${i}] y edge collision by`,
                y + height - CONSTANTS.canvasHeight,
             )
@@ -69,12 +70,13 @@
          })
       }
 
-      console.info(`[fx-genRects] ${name ?? ''}`, rectangles)
+      log(`[fx-genRects] ${name ?? ''}`, rectangles)
       return rectangles
    }
 
    function draw() {
       context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
+
       // big boi (no edge detection)
       // z-index to canvas is procedural (aka top down order)
       context.fillStyle = randRgb()
@@ -98,7 +100,7 @@
 
    function redraw({ experiment = null, preserveLogs = false } = {}) {
       if (!preserveLogs) console.clear()
-      if (experiment) console.info(`Experiment loaded: ${experiment}`)
+      if (experiment) log(`Experiment loaded: ${experiment}`)
       draw()
    }
    document.getElementById('redraw').addEventListener('click', () => redraw())
