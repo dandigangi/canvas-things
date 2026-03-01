@@ -28,17 +28,43 @@
 <script src="./constants.js"></script>
 <script src="./global.js"></script>
 <script>
+   const canvas = document.getElementById('canvas')
+   const context = canvas.getContext('2d')
+   canvas.width = CONSTANTS.canvasWidth
+   canvas.height = CONSTANTS.canvasHeight
+
    function genRects({ name = null, total, maxSize }) {
-      const TOTAL = rand(total)
       const rectangles = []
 
-      // Build props, don't push to context until draw
-      for (let i = 0; i < TOTAL; i++) {
+      // build props, draw later
+      for (let i = 0; i < total; i++) {
+         let x = rand(CONSTANTS.canvasWidth)
+         let y = rand(CONSTANTS.canvasHeight)
+         const width = rand(maxSize)
+         const height = rand(maxSize)
+
+         // edge detection
+         if (x + width > CONSTANTS.canvasWidth) {
+            console.log(
+               `[rect ${i}] x edge collision by`,
+               x + width - CONSTANTS.canvasWidth,
+            )
+            x = CONSTANTS.canvasWidth - width
+         }
+
+         if (y + height > CONSTANTS.canvasHeight) {
+            console.log(
+               `[rect ${i}] y edge collision by`,
+               y + height - CONSTANTS.canvasHeight,
+            )
+            y = CONSTANTS.canvasHeight - height
+         }
+
          rectangles.push({
-            x: rand(800),
-            y: rand(600),
-            width: rand(maxSize),
-            height: rand(maxSize),
+            x,
+            y,
+            width,
+            height,
             fillStyle: randRgb({ alpha: true }),
          })
       }
@@ -48,13 +74,8 @@
    }
 
    function draw() {
-      const canvas = document.getElementById('canvas')
-      const context = canvas.getContext('2d')
-
-      canvas.width = CONSTANTS.canvasWidth
-      canvas.height = CONSTANTS.canvasHeight
-
-      // Big boi
+      context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
+      // big boi (no edge detection)
       // z-index to canvas is procedural (aka top down order)
       context.fillStyle = randRgb()
       context.fillRect(
@@ -64,8 +85,8 @@
          250,
       ) // x, y, width, height
 
-      // Mini bois
-      const miniRects = genRects({ name: 'miniRects', total: 6, maxSize: 165 })
+      // mini bois
+      const miniRects = genRects({ name: 'miniRects', total: 10, maxSize: 350 })
 
       for (const rect of miniRects) {
          context.fillStyle = rect.fillStyle
@@ -73,12 +94,12 @@
       }
    }
 
-   function redraw(experiment = null, preserveLogs = false) {
+   draw()
+
+   function redraw({ experiment = null, preserveLogs = false } = {}) {
       if (!preserveLogs) console.clear()
       if (experiment) console.info(`Experiment loaded: ${experiment}`)
       draw()
    }
-
-   draw()
    document.getElementById('redraw').addEventListener('click', () => redraw())
 </script>

@@ -1,4 +1,4 @@
-// Set watermark to experiment title
+// set watermark to experiment title
 ;(function () {
    const el = document.getElementById('title')
    el.textContent = el.textContent.replace(
@@ -7,7 +7,7 @@
    )
 })()
 
-// Supporting functions
+// supporting functions
 function rand(max = null) {
    if (!max) throw new Error('[fx-rand] No max value provided')
    return Math.floor(Math.random() * max + 5)
@@ -21,6 +21,4 @@ function randRgb({ alpha = false } = {}) {
    }
 
    return `${color})`
-
-   // return `rgb(${rand(255)} ${rand(255)} ${rand(255)})`
 }
