@@ -2,5 +2,18 @@
    "tabWidth": 3,
    "semi": false,
    "singleQuote": true,
-   "trailingComma": "all"
+   "trailingComma": "all",
+   "overrides": [
+      {
+         "files": [
+            "*.json",
+            ".prettierrc",
+            ".eslintrc",
+            ".babelrc"
+         ],
+         "options": {
+            "tabWidth": 2
+         }
+      }
+   ]
 }

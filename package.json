@@ -1,0 +1,7 @@
+{
+  "name": "canvas-things",
+  "author": "Dan DiGangi",
+  "scripts": {
+    "gen": "./gen_experiment.sh"
+  }
+}
