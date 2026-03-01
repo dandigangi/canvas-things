@@ -33,7 +33,7 @@
             color: #b9b9b9;
             text-align: center;
             text-transform: uppercase;
-            font-family: "Arial", sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             transform: translate(-1px, 12px);
@@ -50,7 +50,7 @@
             color: #5a5a5a;
             position: relative;
             letter-spacing: -2px;
-            top: -14px;
+            top: -19px;
          }
 
          #redraw {
@@ -98,6 +98,15 @@
       canvasHeight: 600,
    }
 
+   // Set watermark to experiment title
+   ;(function () {
+      const el = document.getElementById('title')
+      el.textContent = el.textContent.replace(
+         'Loading',
+         document.title.replace(/ canvas things/i, ''),
+      )
+   })()
+
    // Supporting functions
    function redraw() {
       console.clear()
@@ -105,7 +114,7 @@
    }
 
    function rand(max = null) {
-      if (!max) throw new Error("[fx-rand] No max value provided")
+      if (!max) throw new Error('[fx-rand] No max value provided')
       return Math.floor(Math.random() * max + 3)
    }
 
@@ -129,19 +138,19 @@
          })
       }
 
-      console.info("[fx-genRects]", name ? name : "", rectangles)
+      console.info('[fx-genRects]', name ? name : '', rectangles)
       return rectangles
    }
 
    function draw() {
-      const canvas = document.getElementById("canvas")
-      const context = canvas.getContext("2d")
+      const canvas = document.getElementById('canvas')
+      const context = canvas.getContext('2d')
 
       canvas.width = CONSTANTS.canvasWidth
       canvas.height = CONSTANTS.canvasHeight
 
       // Mini bois
-      const miniRects = genRects({ name: "miniRects", total: 6, maxSize: 123 })
+      const miniRects = genRects({ name: 'miniRects', total: 6, maxSize: 123 })
 
       for (const rect of miniRects) {
          context.fillStyle = rect.fillStyle
@@ -159,5 +168,5 @@
    }
 
    draw()
-   document.getElementById("redraw").addEventListener("click", redraw)
+   document.getElementById('redraw').addEventListener('click', redraw)
 </script>
