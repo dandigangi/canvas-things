@@ -100,9 +100,8 @@
 
    draw()
 
-   function redraw({ experiment = null, preserveLogs = false } = {}) {
-      if (!preserveLogs) console.clear()
-      if (experiment) log(`Experiment loaded: ${experiment}`)
+   function redraw() {
+      console.clear()
       draw()
    }
    document.getElementById('redraw').addEventListener('click', () => redraw())
