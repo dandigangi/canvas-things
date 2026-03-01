@@ -24,9 +24,11 @@ if [ -z "$NAME_RAW" ]; then
   exit 1
 fi
 
-# Replace spaces with dashes for the filename, keep original spacing for the title
-NAME_SLUG=${NAME_RAW// /-}
+# Normalize spaces
+NAME_TRIMMED=$(printf '%s' "$NAME_RAW" | xargs)
 
+# Filename: all lowercase, words dash-separated
+NAME_SLUG=$(printf '%s' "$NAME_TRIMMED" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 NEW_FILE="${DIMENSION_LOWER}-${NAME_SLUG}.html"
 
 if [ -e "$NEW_FILE" ]; then
@@ -36,5 +38,8 @@ fi
 
 cp "$TEMPLATE" "$NEW_FILE"
 
-sed -i '' "s|\[%EXPERIMENT_TITLE%\]|$NAME_RAW|g" "$NEW_FILE"
+# Experiment title in HTML: ALL CAPS, preserved inside brackets
+EXPERIMENT_TITLE=$(printf '%s' "$NAME_TRIMMED" | tr '[:lower:]' '[:upper:]')
+
+sed -i '' "s|\[%EXPERIMENT_TITLE%\]|[$EXPERIMENT_TITLE]|g" "$NEW_FILE"
 echo "Created '$NEW_FILE' from '$TEMPLATE'."
