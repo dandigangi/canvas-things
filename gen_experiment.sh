@@ -8,14 +8,26 @@ if [ ! -f "$TEMPLATE" ]; then
   exit 1
 fi
 
-read -rp "New experiment name (without .html): " NAME
+read -rp "Is this a 2d or 3d experiment? (2d/3d): " DIMENSION
 
-if [ -z "$NAME" ]; then
+DIMENSION_LOWER=$(printf '%s' "$DIMENSION" | tr '[:upper:]' '[:lower:]')
+
+if [ "$DIMENSION_LOWER" != "2d" ] && [ "$DIMENSION_LOWER" != "3d" ]; then
+  echo "Invalid choice. Please enter '2d' or '3d'."
+  exit 1
+fi
+
+read -rp "Experiment name (without .html): " NAME_RAW
+
+if [ -z "$NAME_RAW" ]; then
   echo "Name cannot be empty."
   exit 1
 fi
 
-NEW_FILE="${NAME}.html"
+# Replace spaces with dashes for the filename, keep original spacing for the title
+NAME_SLUG=${NAME_RAW// /-}
+
+NEW_FILE="${DIMENSION_LOWER}-${NAME_SLUG}.html"
 
 if [ -e "$NEW_FILE" ]; then
   echo "File '$NEW_FILE' already exists. Aborting to avoid overwrite."
@@ -24,5 +36,5 @@ fi
 
 cp "$TEMPLATE" "$NEW_FILE"
 
-sed -i '' "s|\[%EXPERIMENT_TITLE%\]|$NAME|g" "$NEW_FILE"
+sed -i '' "s|\[%EXPERIMENT_TITLE%\]|$NAME_RAW|g" "$NEW_FILE"
 echo "Created '$NEW_FILE' from '$TEMPLATE'."
