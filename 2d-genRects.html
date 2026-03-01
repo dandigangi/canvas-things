@@ -25,8 +25,8 @@
       </div>
    </body>
 </html>
-<script src="./global.js"></script>
 <script src="./constants.js"></script>
+<script src="./global.js"></script>
 <script>
    function genRects({ name = null, total, maxSize }) {
       const TOTAL = rand(total)
@@ -39,7 +39,7 @@
             y: rand(600),
             width: rand(maxSize),
             height: rand(maxSize),
-            fillStyle: randRgb(),
+            fillStyle: randRgb({ alpha: true }),
          })
       }
 
@@ -55,7 +55,7 @@
       canvas.height = CONSTANTS.canvasHeight
 
       // Mini bois
-      const miniRects = genRects({ name: 'miniRects', total: 6, maxSize: 123 })
+      const miniRects = genRects({ name: 'miniRects', total: 6, maxSize: 165 })
 
       for (const rect of miniRects) {
          context.fillStyle = rect.fillStyle
@@ -67,8 +67,8 @@
       context.fillRect(
          rand(CONSTANTS.canvasWidth),
          rand(CONSTANTS.canvasHeight),
-         200,
-         200,
+         250,
+         250,
       ) // x, y, width, height
    }
 
