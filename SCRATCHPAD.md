@@ -1,4 +1,4 @@
-### figuring out edge detection
+### figuring out edge detection (gen rects 1)
 
 - generate positions
 - check for edge (x,y)
@@ -22,7 +22,7 @@ console.log('new pos', canWidth - width)
 
 good enough to code now
 
-### clicks
+### clicks (gen rects 1)
 
 if i want clicks to gen, ill need a scene/state manager since everything would need to be repainted as before w/ the addition. would also mean extraction of edge detection. might need a canvas specific set of utils to keep the code clean.
 
