@@ -10,7 +10,14 @@
             If you're seeing this, your browser doesn't support the canvas tag.
             That's wild. Are you on a Dell from 2003 using AOL?
          </canvas>
-         <button id="redraw">Draw</button>
+         <div>
+            <button id="redraw">Draw Again</button>
+            <select class="experiment-chooser" disabled>
+               <option>Basic</option>
+               <option>EX2</option>
+               <option>EX3</option>
+            </select>
+         </div>
       </div>
       <div class="watermark">
          Canvas Things
@@ -35,7 +42,7 @@
          })
       }
 
-      console.info('[fx-genRects]', name ?? '', rectangles)
+      console.info(`[fx-genRects] ${name ?? ''}`, rectangles)
       return rectangles
    }
 
@@ -64,11 +71,12 @@
       ) // x, y, width, height
    }
 
-   function redraw() {
-      console.clear()
+   function redraw(experiment = null, preserveLogs = false) {
+      if (!preserveLogs) console.clear()
+      if (experiment) console.info(`Experiment loaded: ${experiment}`)
       draw()
    }
 
    draw()
-   document.getElementById('redraw').addEventListener('click', redraw)
+   document.getElementById('redraw').addEventListener('click', () => redraw())
 </script>
