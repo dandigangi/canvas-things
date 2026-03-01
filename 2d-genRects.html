@@ -54,15 +54,8 @@
       canvas.width = CONSTANTS.canvasWidth
       canvas.height = CONSTANTS.canvasHeight
 
-      // Mini bois
-      const miniRects = genRects({ name: 'miniRects', total: 6, maxSize: 165 })
-
-      for (const rect of miniRects) {
-         context.fillStyle = rect.fillStyle
-         context.fillRect(rect.x, rect.y, rect.width, rect.height)
-      }
-
       // Big boi
+      // z-index to canvas is procedural (aka top down order)
       context.fillStyle = randRgb()
       context.fillRect(
          rand(CONSTANTS.canvasWidth),
@@ -70,6 +63,14 @@
          250,
          250,
       ) // x, y, width, height
+
+      // Mini bois
+      const miniRects = genRects({ name: 'miniRects', total: 6, maxSize: 165 })
+
+      for (const rect of miniRects) {
+         context.fillStyle = rect.fillStyle
+         context.fillRect(rect.x, rect.y, rect.width, rect.height)
+      }
    }
 
    function redraw(experiment = null, preserveLogs = false) {
