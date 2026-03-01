@@ -79,9 +79,9 @@
    function draw() {
       context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
 
-      // big boi (no edge detection)
+      // big boi (no edge detection; anchor w/ dark color)
       // z-index to canvas is procedural (aka top down order)
-      context.fillStyle = randRgb()
+      context.fillStyle = '#333'
       context.fillRect(
          rand(CONSTANTS.canvasWidth),
          rand(CONSTANTS.canvasHeight),
