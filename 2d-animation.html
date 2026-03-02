@@ -1,0 +1,86 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>[ANIMATION] CANVAS THINGS</title>
+      <link rel="stylesheet" href="./global.css" />
+   </head>
+   <body>
+      <div class="container">
+         <canvas id="canvas">
+            If you're seeing this, your browser doesn't support the canvas tag.
+            That's wild. Are you on a Dell from 2003 using AOL?
+         </canvas>
+         <div>
+            <button id="restart" class="button">Restart</button>
+            <select id="experiment-chooser" disabled>
+               <option>Basic</option>
+               <option>EX2</option>
+               <option>EX3</option>
+            </select>
+         </div>
+      </div>
+      <div class="watermark">
+         Canvas Things
+         <div id="title">Loading</div>
+      </div>
+   </body>
+</html>
+<script src="./constants.js"></script>
+<script src="./global.js"></script>
+<script>
+   const canvas = document.getElementById('canvas')
+   const context = canvas.getContext('2d')
+   canvas.width = CONSTANTS.canvasWidth
+   canvas.height = CONSTANTS.canvasHeight
+
+   const state = {
+      shapes: [
+         {
+            x: 0,
+            y: 0,
+            width: 80,
+            height: 80,
+            fillHue: 1,
+         },
+         {
+            x: 0,
+            y: 130,
+            width: 80,
+            height: 80,
+            fillHue: 90,
+         },
+         {
+            x: 0,
+            y: 245,
+            width: 80,
+            height: 80,
+            fillHue: 180,
+         },
+      ],
+   }
+
+   function draw() {
+      context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
+
+      for (const shape of state.shapes) {
+         shape.x += 1
+         context.fillStyle = `hsl(${(shape.fillHue += 1)} 100% 50%)`
+         context.fillRect(shape.x, shape.y, shape.width, shape.height)
+      }
+   }
+
+   function loop() {
+      draw()
+      requestAnimationFrame(loop)
+   }
+
+   loop()
+
+   function restart() {
+      console.clear()
+      state.x = 0
+      state.y = 0
+   }
+   document.getElementById('restart').addEventListener('click', () => restart())
+</script>
