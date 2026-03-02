@@ -12,7 +12,8 @@
             That's wild. Are you on a Dell from 2003 using AOL?
          </canvas>
          <div>
-            <button id="redraw">Draw Again</button>
+            <button id="redraw" class="button">Draw Again</button>
+            <button id="clear" class="button">Clear</button>
             <select id="experiment-chooser" disabled>
                <option>Basic</option>
                <option>EX2</option>
@@ -106,4 +107,9 @@
       draw()
    }
    document.getElementById('redraw').addEventListener('click', () => redraw())
+
+   function clear() {
+      context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
+   }
+   document.getElementById('clear').addEventListener('click', () => clear())
 </script>

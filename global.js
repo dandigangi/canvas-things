@@ -14,9 +14,9 @@ function log(...args) {
 })()
 
 // supporting functions
-function rand(max = null) {
+function rand(max = null, tick = 0) {
    if (!max) throw new Error('[fx-rand] No max value provided')
-   return Math.floor(Math.random() * max + 5)
+   return Math.floor(Math.random() * max + tick)
 }
 
 function randRgb({ alpha = false } = {}) {

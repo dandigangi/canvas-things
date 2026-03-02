@@ -54,7 +54,7 @@ body {
    top: -19px;
 }
 
-#redraw {
+.button {
    margin-top: 12px;
    padding: 10px 18px;
    font-size: 16px;
@@ -68,7 +68,7 @@ body {
    transition: background 0.3s;
 }
 
-#redraw:hover {
+.button:hover {
    background: #490d93;
 }
 
