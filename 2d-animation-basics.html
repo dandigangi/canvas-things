@@ -2,7 +2,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>[ANIMATION] CANVAS THINGS</title>
+      <title>[ANIMATION BASICS] CANVAS THINGS</title>
       <link rel="stylesheet" href="./global.css" />
    </head>
    <body>
@@ -48,11 +48,25 @@
             y: 130,
             width: 80,
             height: 80,
+            fillHue: 45,
+         },
+         {
+            x: 0,
+            y: 260,
+            width: 80,
+            height: 80,
             fillHue: 90,
          },
          {
             x: 0,
-            y: 245,
+            y: 390,
+            width: 80,
+            height: 80,
+            fillHue: 135,
+         },
+         {
+            x: 0,
+            y: 520,
             width: 80,
             height: 80,
             fillHue: 180,
@@ -64,7 +78,7 @@
       context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
 
       for (const shape of state.shapes) {
-         shape.x += 1
+         shape.x += 3
          context.fillStyle = `hsl(${(shape.fillHue += 1)} 100% 50%)`
          context.fillRect(shape.x, shape.y, shape.width, shape.height)
       }
