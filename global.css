@@ -108,3 +108,39 @@ canvas {
    height: 100%;
    background-color: #fff;
 }
+
+#color-picker {
+   position: absolute;
+   top: -70px;
+   left: 0;
+   background-color: #fff;
+   padding: 10px;
+   border-radius: 10px;
+   border: 1px solid #000;
+   display: flex;
+   gap: 10px;
+}
+
+#color-picker div {
+   cursor: pointer;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   border: 1px solid #000;
+}
+
+#color-picker .red {
+   background-color: #f00;
+}
+
+#color-picker .green {
+   background-color: #0f0;
+}
+
+#color-picker .blue {
+   background-color: #00f;
+}
+
+#color-picker .yellow {
+   background-color: #ff0;
+}
