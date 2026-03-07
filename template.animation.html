@@ -1,0 +1,62 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>[%EXPERIMENT_TITLE%] CANVAS THINGS</title>
+      <link rel="stylesheet" href="./global.css" />
+   </head>
+   <body>
+      <div class="container">
+         <canvas id="canvas">
+            If you're seeing this, your browser doesn't support the canvas tag.
+            That's wild. Are you on a Dell from 2003 using AOL?
+         </canvas>
+         <div>
+            <button id="restart" class="button">Restart</button>
+            <select id="experiment-chooser" disabled>
+               <option>Basic</option>
+               <option>EX2</option>
+               <option>EX3</option>
+            </select>
+         </div>
+      </div>
+      <div class="watermark">
+         Canvas Things
+         <div id="title">Loading</div>
+      </div>
+   </body>
+</html>
+<script src="./constants.js"></script>
+<script src="./global.js"></script>
+<script>
+   const canvas = document.getElementById('canvas')
+   const context = canvas.getContext('2d')
+   canvas.width = CONSTANTS.canvasWidth
+   canvas.height = CONSTANTS.canvasHeight
+
+   let state = {}
+
+   function draw() {
+      context.fillStyle = '#333'
+      context.fillRect(
+         rand(CONSTANTS.canvasWidth),
+         rand(CONSTANTS.canvasHeight),
+         250,
+         250,
+      )
+   }
+
+   function loop() {
+      draw()
+      requestAnimationFrame(loop)
+   }
+
+   loop()
+
+   function restart() {
+      console.clear()
+      console.log('[fx-restart]')
+      state = {}
+   }
+   document.getElementById('restart').addEventListener('click', () => restart())
+</script>
