@@ -25,3 +25,8 @@ function randRgb({ alpha = false } = {}) {
    if (alpha) return `${color} / ${rand({ min: 1, max: 100 })}%)`
    return `${color})`
 }
+
+module.exports = {
+   rand,
+   randRgb,
+}

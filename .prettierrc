@@ -1,19 +1,20 @@
 {
-   "tabWidth": 3,
-   "semi": false,
-   "singleQuote": true,
-   "trailingComma": "all",
-   "overrides": [
-      {
-         "files": [
-            "*.json",
-            ".prettierrc",
-            ".eslintrc",
-            ".babelrc"
-         ],
-         "options": {
-            "tabWidth": 2
-         }
+  "tabWidth": 3,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["*.test.js", "*.spec.js"],
+      "options": {
+        "tabWidth": 3
       }
-   ]
+    },
+    {
+      "files": ["*.json", ".prettierrc", ".eslintrc", ".babelrc"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
 }

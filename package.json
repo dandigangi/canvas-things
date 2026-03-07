@@ -2,6 +2,12 @@
   "name": "canvas-things",
   "author": "Dan DiGangi",
   "scripts": {
-    "gen": "./gen_experiment.sh"
+    "gen": "./gen_experiment.sh",
+    "test": "jest",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "prettier": "^3.4.2"
   }
 }
