@@ -1,19 +1,28 @@
 #!/usr/bin/env bash
 set -e
 
-TEMPLATE="template.html"
-
-if [ ! -f "$TEMPLATE" ]; then
-  echo "Template file '$TEMPLATE' not found in current directory."
-  exit 1
-fi
-
 read -rp "Is this a 2d or 3d experiment? (2d/3d): " DIMENSION
-
 DIMENSION_LOWER=$(printf '%s' "$DIMENSION" | tr '[:upper:]' '[:lower:]')
 
 if [ "$DIMENSION_LOWER" != "2d" ] && [ "$DIMENSION_LOWER" != "3d" ]; then
   echo "Invalid choice. Please enter '2d' or '3d'."
+  exit 1
+fi
+
+read -rp "Animation or static? (animation/static): " TYPE_RAW
+TYPE_LOWER=$(printf '%s' "$TYPE_RAW" | tr '[:upper:]' '[:lower:]')
+
+if [ "$TYPE_LOWER" = "animation" ]; then
+  TEMPLATE="template.animation.html"
+elif [ "$TYPE_LOWER" = "static" ]; then
+  TEMPLATE="template.static.html"
+else
+  echo "Invalid choice. Please enter 'animation' or 'static'."
+  exit 1
+fi
+
+if [ ! -f "$TEMPLATE" ]; then
+  echo "Template file '$TEMPLATE' not found in current directory."
   exit 1
 fi
 
