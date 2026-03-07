@@ -2,7 +2,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>[%EXPERIMENT_TITLE%] CANVAS THINGS</title>
+      <title>[CLICK GEN] CANVAS THINGS</title>
       <link rel="stylesheet" href="./global.css" />
    </head>
    <body>
@@ -36,26 +36,25 @@
 
    let state = {}
 
-   function draw() {
-      context.fillStyle = '#333'
-      context.fillRect(
-         rand({ max: CONSTANTS.canvasWidth }),
-         rand({ max: CONSTANTS.canvasHeight }),
-         250,
-         250,
-      )
-   }
+   canvas.addEventListener('click', (evt) => {
+      log('[fx-click]', {
+         evt,
+         x: evt.offsetX,
+         y: evt.offsetY,
+      })
 
-   function loop() {
-      draw()
-      requestAnimationFrame(loop)
-   }
+      draw({ x: evt.offsetX, y: evt.offsetY })
+   })
 
-   loop()
+   function draw({ x, y }) {
+      context.fillStyle = randRgb({ alpha: true })
+      context.fillRect(x - 50, y - 50, 100, 100)
+   }
 
    function restart() {
-      console.clear()
-      console.log('[fx-restart]')
+      if (!CONSTANTS.debug) console.clear()
+      log('[fx-restart]')
+      context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
       state = {}
    }
    document.getElementById('restart').addEventListener('click', () => restart())

@@ -41,8 +41,8 @@
       context.clearRect(0, 0, CONSTANTS.canvasWidth, CONSTANTS.canvasHeight)
       context.fillStyle = '#000'
       context.fillRect(
-         rand(CONSTANTS.canvasWidth),
-         rand(CONSTANTS.canvasHeight),
+         rand({ max: CONSTANTS.canvasWidth }),
+         rand({ max: CONSTANTS.canvasHeight }),
          100,
          100,
       )

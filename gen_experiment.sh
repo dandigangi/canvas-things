@@ -33,10 +33,10 @@ if [ -z "$NAME_RAW" ]; then
   exit 1
 fi
 
-# Normalize spaces
+# normalize spaces
 NAME_TRIMMED=$(printf '%s' "$NAME_RAW" | xargs)
 
-# Filename: all lowercase, words dash-separated
+# filename - all lowercase, words dash-separated
 NAME_SLUG=$(printf '%s' "$NAME_TRIMMED" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 NEW_FILE="${DIMENSION_LOWER}-${NAME_SLUG}.html"
 
@@ -47,7 +47,7 @@ fi
 
 cp "$TEMPLATE" "$NEW_FILE"
 
-# Experiment title in HTML: ALL CAPS, preserved inside brackets
+# experiment title all caps, preserve brackets
 EXPERIMENT_TITLE=$(printf '%s' "$NAME_TRIMMED" | tr '[:lower:]' '[:upper:]')
 
 sed -i '' "s|\[%EXPERIMENT_TITLE%\]|[$EXPERIMENT_TITLE]|g" "$NEW_FILE"

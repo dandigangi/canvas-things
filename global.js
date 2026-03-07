@@ -14,17 +14,14 @@ function log(...args) {
 })()
 
 // supporting functions
-function rand(max = null, tick = 0) {
+function rand({ min = 0, max = null }) {
    if (!max) throw new Error('[fx-rand] No max value provided')
-   return Math.floor(Math.random() * max + tick)
+   return Math.floor(Math.random() * (max - min) + min)
 }
 
 function randRgb({ alpha = false } = {}) {
-   const color = `rgb(${rand(255)} ${rand(255)} ${rand(255)}`
+   const color = `rgb(${rand({ max: 255 })} ${rand({ max: 255 })} ${rand({ max: 255 })}`
 
-   if (alpha) {
-      return `${color} / ${rand(100)}%)`
-   }
-
+   if (alpha) return `${color} / ${rand({ min: 1, max: 100 })}%)`
    return `${color})`
 }
