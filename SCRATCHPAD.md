@@ -29,3 +29,9 @@ if i want clicks to gen, ill need a scene/state manager since everything would n
 click, grab x/y, run edge detection, update as needed, redraw. could also do the opposite detecting previous paints if mouse click hits to remove. state manager will be critical if i go down these paths.
 
 better to move on from this experiment and deeper into canvas abilities (especially animation). clicks can always be a later effort or separate experiement. lets do that.
+
+### anim trail
+
+on move, gen a rect, and then animate it down until 0 opacity. thinking... draw at x/y pos at time of move... then animate. not clicking yet how to do this.
+
+took a minute to get something basic going. not sure why the confusion w/ this one as much. need to work on cancelling and set of state shapes to gen more trails.
