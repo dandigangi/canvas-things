@@ -1,0 +1,9 @@
+{
+  "name": "threejs",
+  "author": "Dan DiGangi",
+  "main": "index.js",
+  "devDependencies": {
+    "three": "^0.183.2",
+    "vite": "^8.0.0"
+  }
+}
