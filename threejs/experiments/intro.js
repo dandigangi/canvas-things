@@ -26,15 +26,6 @@ function randomColor() {
 }
 
 export default function run(container) {
-   const back = document.createElement('button')
-   back.textContent = 'Go Back'
-   back.className = 'experiment-back-button'
-   back.onclick = () => {
-      window.location.search = ''
-      window.location.hash = ''
-   }
-   document.body.appendChild(back)
-
    const scene = new THREE.Scene()
    scene.background = new THREE.Color(0x000000)
    const camera = new THREE.PerspectiveCamera(

@@ -38,7 +38,29 @@ function renderExperimentList() {
    container.appendChild(list)
 }
 
+function ensureBackButton() {
+   let btn = document.querySelector('.experiment-back-button')
+   if (!btn) {
+      btn = document.createElement('button')
+      btn.textContent = 'Go Back'
+      btn.className = 'experiment-back-button'
+      btn.onclick = () => {
+         window.location.search = ''
+         window.location.hash = ''
+      }
+      document.body.appendChild(btn)
+   }
+}
+
+function removeBackButton() {
+   const btn = document.querySelector('.experiment-back-button')
+   if (btn && btn.parentNode) {
+      btn.parentNode.removeChild(btn)
+   }
+}
+
 async function runExperiment(id) {
+   ensureBackButton()
    const container = getContainer()
    try {
       const mod = await import(`./experiments/${id}.js`)
@@ -56,7 +78,9 @@ async function runExperiment(id) {
 
 const experimentId = getExperimentId()
 if (experimentId) {
+   // In experiment view; make sure list styles don't add padding
    runExperiment(experimentId)
 } else {
+   removeBackButton()
    renderExperimentList()
 }
