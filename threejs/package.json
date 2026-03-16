@@ -2,6 +2,9 @@
   "name": "threejs",
   "author": "Dan DiGangi",
   "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
   "devDependencies": {
     "three": "^0.183.2",
     "vite": "^8.0.0"
