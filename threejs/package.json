@@ -3,7 +3,8 @@
   "author": "Dan DiGangi",
   "main": "index.js",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "gen": "bash gen_ex.sh"
   },
   "devDependencies": {
     "three": "^0.183.2",

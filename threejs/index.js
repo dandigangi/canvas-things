@@ -1,7 +1,4 @@
-const EXPERIMENTS = [
-   { id: 'intro', label: 'Intro' },
-   { id: 'tbd', label: 'TBD EX2' },
-]
+const EXPERIMENTS = [{ id: 'intro', label: 'Intro' }]
 
 function getExperimentId() {
    const params = new URLSearchParams(location.search)
