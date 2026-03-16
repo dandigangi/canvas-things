@@ -53,8 +53,33 @@ if [[ -f "$index_path" ]]; then
   if grep -q "id: '$name'" "$index_path"; then
     echo "Experiment \"$name\" is already listed in index.js."
   else
-    # Insert just before the closing bracket of EXPERIMENTS array
-    perl -0pi -e "s/(const EXPERIMENTS = \\[\n)([^\\]]*)(\\])/\\1\\2   { id: '$name', label: '$label' },\n\\3/" "$index_path"
+    # Insert into EXPERIMENTS array in index.js using Node so we can
+    # safely handle both single-line and multi-line array formats.
+    node - "$index_path" "$name" "$label" <<'NODE'
+const fs = require('fs');
+
+const [indexPath, id, label] = process.argv.slice(2);
+let src = fs.readFileSync(indexPath, 'utf8');
+
+if (src.includes(`id: '${id}'`)) {
+  process.exit(0);
+}
+
+src = src.replace(
+  /const EXPERIMENTS = \[(.*?)]/s,
+  (match, inner) => {
+    const trimmed = inner.trim();
+    const entry = `{ id: '${id}', label: '${label}' }`;
+    if (!trimmed) {
+      return `const EXPERIMENTS = [${entry}]`;
+    }
+    return `const EXPERIMENTS = [${trimmed}, ${entry}]`;
+  },
+);
+
+fs.writeFileSync(indexPath, src);
+NODE
+
     echo "Added \"$label\" to experiments nav in index.js."
   fi
 else
